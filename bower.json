@@ -1,0 +1,28 @@
+{
+  "name": "jump",
+  "version": "0.0.0",
+  "authors": [
+    "Wes Kaplan <me@weskaplan.com>"
+  ],
+  "description": "Website that encourages jumping",
+  "main": "app.js",
+  "license": "MIT",
+  "homepage": "weskaplan.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "foundation": "zurb/bower-foundation",
+    "imagesloaded": "~3.1.8",
+    "masonry": "~3.1.5",
+    "wookmark-jquery": "~1.4.8",
+    "jquery": "~2.1.1",
+    "cropper": "*",
+    "jquery-form": "~3.46.0"
+  }
+}

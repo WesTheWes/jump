@@ -1,0 +1,154 @@
+@import "compass/css3/transition";
+
+		 /**
+Remove default margin
+ 	 **/
+
+ body {
+ 	background-image: url("../images/field_sky.jpg");
+ 	background-size: cover;
+ 	background-repeat: none;
+ 	background-attachment: fixed;
+ 	margin: 0;
+}
+
+.row {
+	overflow: hidden;
+}
+
+	/**
+Sidebar
+**/
+
+.sidebar {
+	h1{
+		color: rgb( 30, 144, 255);
+	}
+	margin: 0;
+	height: 100%;
+	padding: 20px;
+	position: fixed;
+	// background: linear-gradient(90deg, rgba(1,1,1,0) 0%,rgba(1,1,1,) 100%);
+	color: #fff;
+}
+
+@media only screen and (min-width:640){
+	.sidebar {
+		width:100%;
+		bottom: 0;
+		height: 100px;
+	}
+}
+
+@media only screen and (min-width:1024){
+	.sidebar {
+		width:33.3333%;
+	}
+}
+
+		/**
+Image Grid Stuff
+	**/
+
+.images, .image, img {
+	margin:0;
+	padding: 0;
+}
+
+$zoomTiming: 0.2s;
+
+.images {
+	// overflow: hidden;
+}
+
+.image {
+	opacity: 0;
+	// overflow: hidden;
+	
+	.imgContainer{
+		position: relative;
+		width:100%;
+		overflow:hidden;
+	}
+
+	img {
+		-webkit-transition: -webkit-transform $zoomTiming ease;
+		width: 100%;
+		z-index:1;
+	}
+
+	.imgText {
+		z-index: 2;
+		max-height: 50%;
+		display: block;
+		margin:0;
+		padding: 10px 20px;
+		width: 100%;
+		position: absolute;
+		-webkit-transition: -webkit-transform $zoomTiming ease;
+		color: #fff;
+		background-color: rgba(0,0,0,.7);
+		font-family:Georgia;
+	}
+
+	.imgTitle{
+		top:0;
+		-webkit-transform: translateY(-100%);
+	}
+
+	.imgDescription {
+		top: 100%;
+		-webkit-transform: translateY(0); 
+	}
+
+	&:hover{
+		img{
+			-webkit-transform: scale(1.2,1.2);
+		}
+		.imgTitle {
+			-webkit-transform: translateY(0);
+		}
+		.imgDescription{
+			-webkit-transform: translateY(-100%);
+		}
+	}
+}
+
+// Image Upload Screen
+
+.imgPreview {
+	width: 50%;
+	height: 50%;
+	
+	#upload {
+		
+	}
+}
+
+// Animation Classes
+
+.inView {
+	-webkit-transition: all 0.5s ease;
+	-webkit-animation-name: jumpIn;
+	-webkit-animation-fill-mode: forwards;
+}
+
+.outOfView {
+	-webkit-animation-name: jumpOut;
+	-webkit-animation-fill-mode: forwards;
+	z-index: 0;
+}
+
+@-webkit-keyframes jumpIn {
+	0% { opacity: 0; }
+	// 25%{ -webkit-transform: translateY(30px); }
+	// 50%{ -webkit-transform: translateY(0); }
+	// 75%{ -webkit-transform: translateY(30px) translateX(-250px); }
+	100%{ -webkit-transform: translateY(0) translateX(0) rotate(360deg); opacity: 1; }
+}
+
+@-webkit-keyframes jumpOut {
+	0% {-webkit-transform: translateY(0) translateX(0) rotate(0deg); opacity: 1; }
+	100% { opacity: 0;-webkit-transform: scale(0.1,0.1) }
+}
+

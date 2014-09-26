@@ -1,0 +1,10 @@
+/bower_components/*
+
+/.sass-cache/*
+
+/public/*
+/database/*
+/node_modules/*
+
+*.bowerrc
+
