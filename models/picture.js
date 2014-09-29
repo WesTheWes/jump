@@ -5,7 +5,8 @@ var picSchema = new Schema({
 	dateAdded: {type: Date, default: Date.now},
 	title: String,
 	description: String,
-	url: String,
+	fullSize_url: String,
+	thumb_url: String,
 	approved: {type:Boolean, default: true}
 })
 

@@ -16,7 +16,7 @@ var grid = function ($){
       itemWidth: 0, // Optional min width of a grid item
       autoResize: true, // This will auto-update the layout when the browser window is resized.
       container: container, // Optional, used for some extra CSS styling
-      offset: 10, // Optional, the distance between grid items
+      offset: 20, // Optional, the distance between grid items
       outerOffset: 0, // Optional the distance from grid to parent
       flexibleWidth: '100%' // Maximum width
     };
