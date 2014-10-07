@@ -8459,14 +8459,19 @@ Image Grid Stuff
   height: 50%;
 }
 
-/* line 130, ../../scss/_misc.scss */
+/* line 128, ../../scss/_misc.scss */
+canvas {
+  display: none;
+}
+
+/* line 134, ../../scss/_misc.scss */
 .inView {
   -webkit-transition: all 0.5s ease;
   -webkit-animation-name: jumpIn;
   -webkit-animation-fill-mode: forwards;
 }
 
-/* line 136, ../../scss/_misc.scss */
+/* line 140, ../../scss/_misc.scss */
 .outOfView {
   -webkit-animation-name: jumpOut;
   -webkit-animation-fill-mode: forwards;
@@ -8474,12 +8479,12 @@ Image Grid Stuff
 }
 
 @-webkit-keyframes jumpIn {
-  /* line 143, ../../scss/_misc.scss */
+  /* line 147, ../../scss/_misc.scss */
   0% {
     opacity: 0;
   }
 
-  /* line 147, ../../scss/_misc.scss */
+  /* line 151, ../../scss/_misc.scss */
   100% {
     -webkit-transform: translateY(0) translateX(0) rotate(360deg);
     opacity: 1;
@@ -8487,13 +8492,13 @@ Image Grid Stuff
 }
 
 @-webkit-keyframes jumpOut {
-  /* line 151, ../../scss/_misc.scss */
+  /* line 155, ../../scss/_misc.scss */
   0% {
     -webkit-transform: translateY(0) translateX(0) rotate(0deg);
     opacity: 1;
   }
 
-  /* line 152, ../../scss/_misc.scss */
+  /* line 156, ../../scss/_misc.scss */
   100% {
     opacity: 0;
     -webkit-transform: scale(0.1, 0.1);

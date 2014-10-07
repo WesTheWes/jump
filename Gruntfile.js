@@ -65,5 +65,5 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-cssmin')
 
-	grunt.registerTask('default', ['bower_concat'], ['compass'], ['concat'], ['uglify']);
+	grunt.registerTask('default', ['bower_concat', 'compass', 'cssmin', 'uglify']);
 }

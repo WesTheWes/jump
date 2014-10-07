@@ -61,35 +61,81 @@ var grid = function ($){
   });
 }
 
-// Function to display file before upload
-
-function readImgURL(fileInput, callback){
-  if (fileInput.files && fileInput.files[0]){
-    var reader = new FileReader();
-    reader.onload = function(img) {
-      callback(img.target.result);
-    }
-    reader.readAsDataURL(fileInput.files[0]);
-  }
-}
+// Code to run after document is loaded
 
 $(document).ready(function(){
   // Initialize grid
 	grid($);
 
-  // Preview image before submit
-  
+  // Assign variables to necessary DOM elements 
+ 
   var fileInput = $('.imgUpload'),
       uploadElement = $('#upload'),
-      editButtons = $('.editButtons');
+      editButtons = $('.editButtons'),
+      rotation = 0;
+  var canvas       = $("canvas")[0],
+      context      = canvas.getContext("2d");
 
+  // Image Crop And Rotate
+
+  // Function to handle file upload and rotate
+  function readImgURL(fileInput, cb){
+    if(fileInput.files && fileInput.files[0]){
+      // Create File Reader
+      var reader = new FileReader();
+      // Set callback function for File Reader
+      reader.onload = function(img) {
+        console.log("image read")
+        cb.call(this, img.target.result, rotation);
+      }
+      reader.readAsDataURL(fileInput.files[0]);
+    }
+  }
+
+  // Create image in canvas, rotate, then feed to cropper
+  function createImg(src, rotation) {
+    console.log("running callback function, rotation = " + rotation)
+    console.log(src);
+    rotation = typeof rotation !== 'undefined' && rotation % 90 == 0 ? rotation : 0;
+    var img = new Image();
+    img.onload = function() {
+      console.log("image read\nimage height = " + img.height + ", image width = " + img.width );
+      switch(Math.abs(rotation%180)){
+        case(0):
+          canvas.width = img.width;
+          canvas.height = img.height;
+          break;
+        case(90):
+          canvas.width = img.height;
+          canvas.height = img.width;
+          break;
+      }
+      console.log("canvas height = " + canvas.height + ", canvas width = " + canvas.width );
+      context.save();
+      context.translate(canvas.width/2, canvas.height/2);
+      context.rotate(rotation*Math.PI/180);
+      context.drawImage(img, -img.width/2, -img.height/2);
+      context.restore();
+      uploadElement.cropper('setImgSrc', canvas.toDataURL())
+    };
+    img.src = src;
+  }
+  // Initialize cropper
   uploadElement.cropper();
 
+  // Set up callback for when image is uploaded
   fileInput.change(function(){
-    console.log('Picture uploaded');
-    readImgURL( fileInput[0], function(src){
-      uploadElement.cropper('setImgSrc', src);
-    });
-    editButtons.addClass('active');
-  });  
+    rotation = 0;
+    readImgURL.call(this, fileInput[0], createImg);
+  });
+
+  // Rotate images
+  $('.rotateLeft').click(function(){
+    rotation -= 90;
+    readImgURL.call(this, fileInput[0], createImg)
+  })
+  $('.rotateRight').click(function(){
+    rotation += 90;
+    readImgURL.call(this, fileInput[0], createImg)
+  })
 });
