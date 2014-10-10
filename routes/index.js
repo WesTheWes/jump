@@ -31,27 +31,38 @@ router.post('/upload', function(req,res,next) {
 			return file.replace(path.extname(file), addition + path.extname(file));
 		}
 
-		// Get title, description, and big and small picture urls
-		var title = fields.title,
-			description = fields.description;
+		// Get all form data
+		var title 		= fields.title,
+			description = fields.description,
+			x			= fields.xData,
+			y			= fields.yData,
+			width		= fields.widthData,
+			height		= fields.heightData,
+			rotation	= fields.rotation;
+		console.log(title + description + x + y + width + height + rotation);
 
 		var picture = files.picture[0].path;
 			fullSize_url = path.basename(picture)
 			thumb_url = extendFilename(fullSize_url, '_thumb');
 		
-		gm(picture).resize(300).write(extendFilename(picture, '_thumb'), function(err) {
-			if(err) next(err); 
+		// Resize and crop picture from crop and rotate data
+		gm(picture).rotate('black', rotation).crop(width, height, x, y).write(picture, function(err) {
+			if(err) next(err);
+			// Resize picture for thumb
+			gm(picture).resize(300).write(extendFilename(picture, '_thumb'), function(err) {
+				if(err) next(err); 
 
-			// Save picture to database
-			var picture = new Picture({
-				title: title,
-				description: description,
-				fullSize_url: fullSize_url,
-				thumb_url: thumb_url
+				// Save picture to database
+				var picture = new Picture({
+					title: title,
+					description: description,
+					fullSize_url: fullSize_url,
+					thumb_url: thumb_url
+				});
+				picture.save();
+				console.log('Picture Saved');
+				res.redirect('..');
 			});
-			picture.save();
-			console.log('Picture Saved');
-			res.redirect('..');
 		});
 	});
 });

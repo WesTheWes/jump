@@ -69,14 +69,27 @@ $(document).ready(function(){
 
   // Assign variables to necessary DOM elements 
  
-  var fileInput = $('.imgUpload'),
+  var fileInput     = $('.imgUpload'),
       uploadElement = $('#upload'),
-      editButtons = $('.editButtons'),
-      rotation = 0;
-  var canvas       = $("canvas")[0],
-      context      = canvas.getContext("2d");
+      editButtons   = $('.editButtons'),
+      xData         = $('#xData'),
+      yData         = $('#yData'),
+      widthData     = $('#widthData'),
+      heightData    = $('#heightData'),
+      rotation      = $('#rotation'),
+      canvas        = $("canvas")[0],
+      context       = canvas.getContext("2d");
 
   // Image Crop And Rotate
+
+  // Function to update data after cropping
+
+  function doneCropping(data){
+    xData.val(data.x);
+    yData.val(data.y);
+    widthData.val(data.width);
+    heightData.val(data.height);
+  }
 
   // Function to handle file upload and rotate
   function readImgURL(fileInput, cb){
@@ -86,7 +99,7 @@ $(document).ready(function(){
       // Set callback function for File Reader
       reader.onload = function(img) {
         console.log("image read")
-        cb.call(this, img.target.result, rotation);
+        cb.call(this, img.target.result, rotation.val());
       }
       reader.readAsDataURL(fileInput.files[0]);
     }
@@ -96,11 +109,10 @@ $(document).ready(function(){
   function createImg(src, rotation) {
     console.log("running callback function, rotation = " + rotation)
     console.log(src);
-    rotation = typeof rotation !== 'undefined' && rotation % 90 == 0 ? rotation : 0;
     var img = new Image();
     img.onload = function() {
       console.log("image read\nimage height = " + img.height + ", image width = " + img.width );
-      switch(Math.abs(rotation%180)){
+      switch(Math.abs(rotation)%180){
         case(0):
           canvas.width = img.width;
           canvas.height = img.height;
@@ -120,22 +132,22 @@ $(document).ready(function(){
     };
     img.src = src;
   }
-  // Initialize cropper
-  uploadElement.cropper();
+  // Initialize cropper with callback function
+  uploadElement.cropper({done:doneCropping});
 
   // Set up callback for when image is uploaded
   fileInput.change(function(){
-    rotation = 0;
+    rotation.val(0);
     readImgURL.call(this, fileInput[0], createImg);
   });
 
   // Rotate images
   $('.rotateLeft').click(function(){
-    rotation -= 90;
+    rotation.val((parseInt(rotation.val(),10) - 90)%360);
     readImgURL.call(this, fileInput[0], createImg)
   })
   $('.rotateRight').click(function(){
-    rotation += 90;
+    rotation.val((parseInt(rotation.val(),10) + 90)%360);
     readImgURL.call(this, fileInput[0], createImg)
   })
 });

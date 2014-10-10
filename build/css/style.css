@@ -8406,17 +8406,18 @@ Image Grid Stuff
 }
 /* line 68, ../../scss/_misc.scss */
 .image .imgContainer {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
   position: relative;
   width: 100%;
   overflow: hidden;
 }
-/* line 74, ../../scss/_misc.scss */
+/* line 75, ../../scss/_misc.scss */
 .image img {
   -webkit-transition: -webkit-transform 0.2s ease;
   width: 100%;
   z-index: 1;
 }
-/* line 80, ../../scss/_misc.scss */
+/* line 81, ../../scss/_misc.scss */
 .image .imgText {
   z-index: 2;
   max-height: 50%;
@@ -8430,48 +8431,48 @@ Image Grid Stuff
   background-color: rgba(0, 0, 0, 0.7);
   font-family: Georgia;
 }
-/* line 94, ../../scss/_misc.scss */
+/* line 95, ../../scss/_misc.scss */
 .image .imgTitle {
   top: 0;
   -webkit-transform: translateY(-100%);
 }
-/* line 99, ../../scss/_misc.scss */
+/* line 100, ../../scss/_misc.scss */
 .image .imgDescription {
   top: 100%;
   -webkit-transform: translateY(0);
 }
-/* line 105, ../../scss/_misc.scss */
+/* line 106, ../../scss/_misc.scss */
 .image:hover img {
   -webkit-transform: scale(1.2, 1.2);
 }
-/* line 108, ../../scss/_misc.scss */
+/* line 109, ../../scss/_misc.scss */
 .image:hover .imgTitle {
   -webkit-transform: translateY(0);
 }
-/* line 111, ../../scss/_misc.scss */
+/* line 112, ../../scss/_misc.scss */
 .image:hover .imgDescription {
   -webkit-transform: translateY(-100%);
 }
 
-/* line 119, ../../scss/_misc.scss */
+/* line 120, ../../scss/_misc.scss */
 .imgPreview {
   width: 50%;
   height: 50%;
 }
 
-/* line 128, ../../scss/_misc.scss */
+/* line 129, ../../scss/_misc.scss */
 canvas {
   display: none;
 }
 
-/* line 134, ../../scss/_misc.scss */
+/* line 135, ../../scss/_misc.scss */
 .inView {
   -webkit-transition: all 0.5s ease;
   -webkit-animation-name: jumpIn;
   -webkit-animation-fill-mode: forwards;
 }
 
-/* line 140, ../../scss/_misc.scss */
+/* line 141, ../../scss/_misc.scss */
 .outOfView {
   -webkit-animation-name: jumpOut;
   -webkit-animation-fill-mode: forwards;
@@ -8479,12 +8480,12 @@ canvas {
 }
 
 @-webkit-keyframes jumpIn {
-  /* line 147, ../../scss/_misc.scss */
+  /* line 148, ../../scss/_misc.scss */
   0% {
     opacity: 0;
   }
 
-  /* line 151, ../../scss/_misc.scss */
+  /* line 152, ../../scss/_misc.scss */
   100% {
     -webkit-transform: translateY(0) translateX(0) rotate(360deg);
     opacity: 1;
@@ -8492,13 +8493,13 @@ canvas {
 }
 
 @-webkit-keyframes jumpOut {
-  /* line 155, ../../scss/_misc.scss */
+  /* line 156, ../../scss/_misc.scss */
   0% {
     -webkit-transform: translateY(0) translateX(0) rotate(0deg);
     opacity: 1;
   }
 
-  /* line 156, ../../scss/_misc.scss */
+  /* line 157, ../../scss/_misc.scss */
   100% {
     opacity: 0;
     -webkit-transform: scale(0.1, 0.1);
