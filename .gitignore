@@ -2,7 +2,7 @@
 
 /.sass-cache/*
 /database/*
-*/jumpingPics/*
+/jumpingPics/*
 /node_modules/*
 
 *.bowerrc

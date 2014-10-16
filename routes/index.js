@@ -4,7 +4,8 @@ var debug 		= require('debug')('routers'),
 	path 		= require('path'),
 	multiparty 	= require('multiparty'),
 	gm 			= require('gm'),
-	Picture 	= require('../models/picture');
+	Picture 	= require('../models/picture'),
+	uploadDir	= './public/images/jumpingPics';
 
 // Create an express router
 
@@ -21,7 +22,10 @@ router.use(function(req,res,next){
 // Temporarily upload picture to server
 
 router.post('/upload', function(req,res,next) {
-	var form = new multiparty.Form({uploadDir:'./public/images/jumpingPics'});
+	var form = new multiparty.Form({uploadDir:uploadDir});
+	fs.mkdir(uploadDir, function(){
+		if(err) {next(err)}
+	})
 	form.parse(req, function(err, fields, files){
 		if(err){ next(err) }
 
@@ -44,7 +48,7 @@ router.post('/upload', function(req,res,next) {
 		var picture = files.picture[0].path;
 			fullSize_url = path.basename(picture)
 			thumb_url = extendFilename(fullSize_url, '_thumb');
-		
+
 		// Resize and crop picture from crop and rotate data
 		gm(picture).rotate('black', rotation).crop(width, height, x, y).write(picture, function(err) {
 			if(err) next(err);
