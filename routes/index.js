@@ -23,8 +23,10 @@ router.use(function(req,res,next){
 
 router.post('/upload', function(req,res,next) {
 	var form = new multiparty.Form({uploadDir:uploadDir});
-	fs.mkdir(uploadDir, function(){
-		if(err) {next(err)}
+	fs.mkdir(uploadDir, function(err){
+		if(err) { 
+			if(err.code != 'EEXIST'){ next(err) }
+		}
 	})
 	form.parse(req, function(err, fields, files){
 		if(err){ next(err) }
