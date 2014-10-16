@@ -8,3 +8,4 @@
 *.bowerrc
 
 Procfile
+*.env
