@@ -9,7 +9,7 @@ var path = require('path');
 // Connect to MongoLab
 
 var mongoose = require('mongoose');
-var mongoDB = require('./database/mongoLab');
+var mongoDB = process.env.mongodb || require('./database/mongoLab');
 mongoose.connect(mongoDB);
 
 

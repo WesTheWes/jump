@@ -71,7 +71,7 @@ $(document).ready(function(){
  
   var fileInput     = $('.imgUpload'),
       uploadElement = $('#upload'),
-      editButtons   = $('.editButtons'),
+      pictureButtons = $('.pictureButton'),
       xData         = $('#xData'),
       yData         = $('#yData'),
       widthData     = $('#widthData'),
@@ -103,6 +103,9 @@ $(document).ready(function(){
       }
       reader.readAsDataURL(fileInput.files[0]);
     }
+    else {
+      console.log('reseting cropper');
+    }
   }
 
   // Create image in canvas, rotate, then feed to cropper
@@ -132,6 +135,11 @@ $(document).ready(function(){
     };
     img.src = src;
   }
+
+  // Hide edit buttons before image upload
+
+  pictureButtons.hide();
+
   // Initialize cropper with callback function
   uploadElement.cropper({done:doneCropping});
 
@@ -139,6 +147,7 @@ $(document).ready(function(){
   fileInput.change(function(){
     rotation.val(0);
     readImgURL.call(this, fileInput[0], createImg);
+    pictureButtons.show();
   });
 
   // Rotate images

@@ -14,6 +14,7 @@ Remove default margin
 
 .row {
 	overflow: hidden;
+	max-width: none;
 }
 
 	/**
@@ -28,8 +29,12 @@ Sidebar
 	height: 100%;
 	padding: 20px;
 	position: fixed;
-	// background: linear-gradient(90deg, rgba(1,1,1,0) 0%,rgba(1,1,1,) 100%);
+	// background: url('http://www.karmayapi.com/wp-content/uploads/2014/03/url.jpg') center center cover;
 	color: #fff;
+	.panel {
+		overflow: visible;
+		background: url('http://pngimg.com/upload/cloud_PNG2.png') contain center center ;
+	}
 }
 
 @media only screen and (min-width:640){
@@ -118,12 +123,18 @@ $zoomTiming: 0.2s;
 // Image Upload Screen
 
 .imgPreview {
-	width: 50%;
-	height: 50%;
-	
-	#upload {
-		
-	}
+	position: relative;
+	margin: 20px auto;
+	width: auto;
+	max-height: 400px;
+}
+
+.rotateLeft{
+	float:right;
+}
+
+.rotateRight{
+	float:left;
 }
 
 canvas {
