@@ -1,10 +1,10 @@
 /bower_components/*
 
 /.sass-cache/*
-
-/public/*
 /database/*
+*/jumpingPics/*
 /node_modules/*
 
 *.bowerrc
 
+Procfile

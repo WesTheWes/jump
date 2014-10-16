@@ -21,7 +21,7 @@ router.use(function(req,res,next){
 // Temporarily upload picture to server
 
 router.post('/upload', function(req,res,next) {
-	var form = new multiparty.Form({uploadDir:'./public/images'});
+	var form = new multiparty.Form({uploadDir:'./public/images/jumpingPics'});
 	form.parse(req, function(err, fields, files){
 		if(err){ next(err) }
 
