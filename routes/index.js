@@ -7,7 +7,6 @@ var debug 		= require('debug')('routers'),
 	imageMagick	= gm.subClass({ imageMagick : true}),
 	mime		= require('mime'),
 	Picture 	= require('../models/picture'),
-	uploadDir	= './public/images/jumpingPics';
 
 
 // Create an express router
@@ -34,7 +33,7 @@ var	AWS			= require('aws-sdk'),
 // Upload picture to AWS S3
 
 router.post('/upload', function(req,res,next) {
-	var form = new multiparty.Form({uploadDir:uploadDir});
+	var form = new multiparty.Form();
 	fs.mkdir(uploadDir, function(err){
 		if(err) { 
 			if(err.code != 'EEXIST'){ next(err) }
