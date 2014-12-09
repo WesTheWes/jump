@@ -1,7 +1,7 @@
 /** Express app that exports app to server */
 
 
-var express = require('express');					// Requirements
+var express = require('express');					// Imported modules
 var logger = require('morgan');
 var favicon = require('serve-favicon');
 var path = require('path');

@@ -1,53 +1,88 @@
 extends layout
 
 block content
-	div(class="sidebar medium-4 large-3 columns")
-		div(class="panel")
-			h1 Jump!
-			h3 This site is about jumping
-			p Jumping is great, send me pics
-			a(class="button" href="#" data-reveal-id="uploadForm") Upload your picture here!
-		form(id="uploadForm" class="reveal-modal" name="upload" action="/upload" method="post" enctype="multipart/form-data" data-reveal data-abide)
-			div(class="row")
-				div(class="small-12 columns")
-					div(class="title-field")
-						label Title:
-							input(name="title" type="text" required)
-						small(class="error") What is this picture called?
-					div(class="description-field")
-						label Short Description:
-							textarea(name="description" type="textarea" required)
-						small(class="error") You've gotta provide short description, bro.
-					div(class="upload-field")
-						label Upload Image:
-							input(class="imgUpload" name="picture"  type="file" required)
-						small(class="error") You forgot to upload an image!
-					input(hidden id="xData" name="xData")
-					input(hidden id="yData" name="yData")
-					input(hidden id="widthData" name="widthData")
-					input(hidden id="heightData" name="heightData")
-					input(hidden id="rotation" name="rotation")
-				div(class="small-12 columns editImage")
-					div(class="imgPreview")
-						img(src="" id="upload")
-					canvas(class="canvas")
-			div(class="row")
-				div(class="small-4 columns")
-					a(class="button pictureButton rotateLeft")
-						i(class="fa fa-undo")
-				div(class="small-4 columns text-center")
-					button(class="pictureButton" type="submit") Submit!
-				div(class="small-4 columns")
-					a(class="button pictureButton rotateRight")
-						i(class="fa fa-repeat")
-			a(class="close-reveal-modal") &#215;
+	div(class="sidebar small-12 medium-4 large-3 xlarge-2 columns")
+		a(href="/" class="title small-12 columns")
+			h1 Jump
+		a(href="#" data-reveal-id="uploadForm" class="menu-item upload small-12 columns")
+			p Upload
+				i(class="fi-upload-cloud")
+		a(href="#" data-reveal-id="about" class="menu-item about small-12 columns")
+			p About
+				i(class="fi-info")
+		a(href="#" data-reveal-id="made" class="menu-item made small-12 columns")
+			p Development
+				i(class="fi-lightbulb")
+	div(id="about" class="reveal-modal" data-reveal)
+		h3 About this site:
+		p Have you ever wanted to fly? Of course you have. Did you know that you already can, for hundreds if not thousands of milliseconds at a time?! All you need to do is crouch down, say your farewells to the earth, and then push yourself into the atmosphere! As you launch upwards, take the time to feel air rushing through your hair, that incredible feeling of weightlessness, and the adrenaline rush as the ground comes back up to meet you... Exhilarating isn't it?
+		p As you slowly become reaccustomed to life on the ground, don't worry if you feel a strong urge to jump again...in fact embrace it! Keep jumping, and if you really love it, take pictures, come to this site, and upload them to inspire others to throw their bodies into the air. And if you want a little inspiration to help you take your own jumping further, look no further my friend, this site is for you.
+		p Happy jumping!
+		p PS: I also built this site to learn web development...let me know what you think!
+		a(class="close-reveal-modal") &#215;
+	div(id="made" class="reveal-modal" data-reveal)
+		h3 To make this site, I smushed all this software together until it worked:
+		br
+		div(id="backend")
+			h4 Backend
+			ul 
+				li node.js + express.js
+				li mongoDB + mongoose.js
+				li heroku
+				li AWS S3
+		div(id="frontend")
+			h4 Frontend
+			ul
+				li javascript + jQuery
+				li jQuery wookmark
+				li jQuery cropper
+				li zurb foundation
+				li SCSS + Compass
+				li jade
+		h3
+			a(href="https://github.com/WesTheWes/jump" target="_blank") View Source Code on Github!
+		a(class="close-reveal-modal") &#215;
+	form(id="uploadForm" class="reveal-modal small-12 columns" name="upload" action="/upload" method="post" enctype="multipart/form-data" data-reveal data-abide)
+		div(class="row")
+			div(class="small-12 columns")
+				div(class="title-field")
+					label Title:
+						input(name="title" type="text" required)
+					small(class="error") What is this picture called?
+				div(class="description-field")
+					label Short Description:
+						textarea(name="description" type="textarea" required)
+					small(class="error") You've gotta provide short description, bro.
+				div(class="upload-field")
+					label Upload Image:
+						input(class="imgUpload" name="picture"  type="file" required)
+					small(class="error") You forgot to upload an image!
+				input(hidden id="xData" name="xData")
+				input(hidden id="yData" name="yData")
+				input(hidden id="widthData" name="widthData")
+				input(hidden id="heightData" name="heightData")
+				input(hidden id="rotation" name="rotation")
+			div(class="small-12 columns editImage")
+				div(class="imgPreview")
+					img(src="" id="upload")
+				canvas(class="canvas")
+		div(class="row")
+			div(class="small-4 columns")
+				a(class="button pictureButton rotateLeft")
+					i(class="fa fa-undo")
+			div(class="small-4 columns text-center")
+				button(class="pictureButton" type="submit") Submit!
+			div(class="small-4 columns")
+				a(class="button pictureButton rotateRight")
+					i(class="fa fa-repeat")
+		a(class="close-reveal-modal") &#215;
 	div(class="row")
-		div(class="medium-4 large-3 columns")
-		div(class="small-12 medium-8 large-9 columns images")
+		div(class="medium-4 large-3 xlarge-2 columns")
+		div(class="small-12 medium-8 large-9 xlarge-10 columns images")
 			div(class="grid-sizer")
 			each picture in pictures
 				div(class="image")
 					div(class="imgContainer")
 						h4(class="imgText imgTitle")=picture.title
 						p(class="imgText imgDescription")=picture.description
-						img(src="images/jumpingPics/#{picture.thumb_url}")
+						img(src="#{picture.thumb_url}")

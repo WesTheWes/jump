@@ -17,7 +17,7 @@ var grid = function ($){
       autoResize: true, // This will auto-update the layout when the browser window is resized.
       container: container, // Optional, used for some extra CSS styling
       offset: 20, // Optional, the distance between grid items
-      outerOffset: 0, // Optional the distance from grid to parent
+      outerOffset: 20, // Optional the distance from grid to parent
       flexibleWidth: '100%' // Maximum width
     };
     
@@ -27,9 +27,9 @@ var grid = function ($){
       if ($window.width() <= 640){
         options.itemWidth = 160;
       } else if ($window.width() <= 1024 ){
-        options.itemWidth = 213;
+        options.itemWidth = 220;
       } else if ($window.width() >= 1024){
-        options.itemWidth = 256;
+        options.itemWidth = 341.3;
       }
       handler.wookmark(options);
     }
