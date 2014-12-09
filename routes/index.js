@@ -4,6 +4,7 @@ var debug 		= require('debug')('routers'),
 	path 		= require('path'),
 	multiparty 	= require('multiparty'),
 	gm 			= require('gm'),
+	imageMagick	= gm.subClass({ imageMagick : true}),
 	mime		= require('mime'),
 	Picture 	= require('../models/picture'),
 	uploadDir	= './public/images/jumpingPics';
@@ -73,7 +74,7 @@ router.post('/upload', function(req,res,next) {
 			mimeType = mime.lookup(picture);
 
 		// Resize and crop picture from crop and rotate data
-		gm(picture)
+		imageMagick(picture)
 		.rotate('black', rotation)
 		.crop(width, height, x, y)
 		.stream(function(err, stdout, stderr) {
@@ -99,7 +100,7 @@ router.post('/upload', function(req,res,next) {
 				});
 			});
 			// Resize picture for thumb
-			gm(stdout)
+			imageMagick(stdout)
 			.resize(500)
 			.stream(function(err, stdout, stderr) {
 				if(err) next(err);
