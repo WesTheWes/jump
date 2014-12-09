@@ -6,7 +6,7 @@ var debug 		= require('debug')('routers'),
 	gm 			= require('gm'),
 	imageMagick	= gm.subClass({ imageMagick : true}),
 	mime		= require('mime'),
-	Picture 	= require('../models/picture'),
+	Picture 	= require('../models/picture');
 
 
 // Create an express router
