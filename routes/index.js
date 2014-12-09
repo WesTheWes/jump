@@ -3,8 +3,7 @@ var debug 		= require('debug')('routers'),
 	util 		= require('util'),
 	path 		= require('path'),
 	multiparty 	= require('multiparty'),
-	gm 			= require('gm'),
-	imageMagick	= gm.subClass({ imageMagick : true}),
+	gm 			= require('gm').subClass({ imageMagick : true}),
 	mime		= require('mime'),
 	Picture 	= require('../models/picture');
 
@@ -34,11 +33,7 @@ var	AWS			= require('aws-sdk'),
 
 router.post('/upload', function(req,res,next) {
 	var form = new multiparty.Form();
-	fs.mkdir(uploadDir, function(err){
-		if(err) { 
-			if(err.code != 'EEXIST'){ next(err) }
-		}
-	})
+
 	form.parse(req, function(err, fields, files){
 		if(err){ next(err) }
 
@@ -73,7 +68,7 @@ router.post('/upload', function(req,res,next) {
 			mimeType = mime.lookup(picture);
 
 		// Resize and crop picture from crop and rotate data
-		imageMagick(picture)
+		gm(picture)
 		.rotate('black', rotation)
 		.crop(width, height, x, y)
 		.stream(function(err, stdout, stderr) {
@@ -99,7 +94,7 @@ router.post('/upload', function(req,res,next) {
 				});
 			});
 			// Resize picture for thumb
-			imageMagick(stdout)
+			gm(stdout)
 			.resize(500)
 			.stream(function(err, stdout, stderr) {
 				if(err) next(err);
