@@ -156,7 +156,7 @@
 							randX = (Math.random() * (options.maxStart.x - options.minStart.x) + options.minStart.x) + 'px';
 							randY = (Math.random() * (options.maxStart.y - options.minStart.y) + options.minStart.y) + 'px';
 							console.log(element.constructor + randX + randY);
-							element.style.WebkitTransform = 'translateX(' + randX + ') translateY(' + randY + ') rotate(0deg)';
+							element.style.transform = 'translateX(' + randX + ') translateY(' + randY + ') rotate(0deg)';
 					}
 
 					if( !isNaN( options.maxTime - options.minTime ) ){	//Set each element with a random animation time

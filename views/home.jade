@@ -2,26 +2,34 @@ extends layout
 
 block content
 	div(class="sidebar small-12 medium-4 large-3 xlarge-2 columns")
+		div(class="sky")
+		div(class="sun")
+			a(href="#" data-reveal-id="uploadForm" class="menu-item upload small-12 columns")
+				p Upload
+					i(class="fi-upload-cloud")
+		div(class="mountain-far")
+			a(href="#" data-reveal-id="about" class="menu-item about small-12 columns")
+				p About
+					i(class="fi-info")
+		div(class="mountain-near")
+			a(href="#" data-reveal-id="made" class="menu-item made small-12 columns")
+				p Development
+					i(class="fi-lightbulb")
+		div(class="grass-far")
+		div(class="grass-mid")
+		div(class="grass-near")
+		div(class="lake")
 		a(href="/" class="title small-12 columns")
 			h1 Jump
-		a(href="#" data-reveal-id="uploadForm" class="menu-item upload small-12 columns")
-			p Upload
-				i(class="fi-upload-cloud")
-		a(href="#" data-reveal-id="about" class="menu-item about small-12 columns")
-			p About
-				i(class="fi-info")
-		a(href="#" data-reveal-id="made" class="menu-item made small-12 columns")
-			p Development
-				i(class="fi-lightbulb")
 	div(id="about" class="reveal-modal" data-reveal)
-		h3 About this site:
-		p Have you ever wanted to fly? Of course you have. Did you know that you already can, for hundreds if not thousands of milliseconds at a time?! All you need to do is crouch down, say your farewells to the earth, and then push yourself into the atmosphere! As you launch upwards, take the time to feel air rushing through your hair, that incredible feeling of weightlessness, and the adrenaline rush as the ground comes back up to meet you... Exhilarating isn't it?
+		h3 Have you ever wanted to fly?
+		p Of course you have. But did you know that you already can? That's right, for hundreds if not thousands of milliseconds at a time! All you need to do is crouch down, say your parting words to the earth, and then push yourself into the atmosphere! As you launch upwards, take the time to feel air rushing through your hair, that incredible feeling of weightlessness, and the adrenaline rush as the ground comes back up to meet you... Exhilarating isn't it?
 		p As you slowly become reaccustomed to life on the ground, don't worry if you feel a strong urge to jump again...in fact embrace it! Keep jumping, and if you really love it, take pictures, come to this site, and upload them to inspire others to throw their bodies into the air. And if you want a little inspiration to help you take your own jumping further, look no further my friend, this site is for you.
 		p Happy jumping!
 		p PS: I also built this site to learn web development...let me know what you think!
 		a(class="close-reveal-modal") &#215;
 	div(id="made" class="reveal-modal" data-reveal)
-		h3 To make this site, I smushed all this software together until it worked:
+		h3 I shmushed all this software together until it worked:
 		br
 		div(id="backend")
 			h4 Backend
@@ -40,7 +48,7 @@ block content
 				li SCSS + Compass
 				li jade
 		h3
-			a(href="https://github.com/WesTheWes/jump" target="_blank") View Source Code on Github!
+			a(href="https://github.com/WesTheWes/jump" target="_blank") View the Source Code on Github!
 		a(class="close-reveal-modal") &#215;
 	form(id="uploadForm" class="reveal-modal small-12 columns" name="upload" action="/upload" method="post" enctype="multipart/form-data" data-reveal data-abide)
 		div(class="row")
